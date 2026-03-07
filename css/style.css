@@ -1,0 +1,510 @@
+/* ============================================================
+   PREM NAWALE — PORTFOLIO STYLESHEET
+   File: css/style.css
+
+   TABLE OF CONTENTS
+   1.  CSS Variables  ← change colours here
+   2.  Reset & Base
+   3.  Custom Cursor
+   4.  Navbar
+   5.  Scroll Reveal Animations
+   6.  Layout Helpers & Shared Components
+   7.  Hero Section
+   8.  Stats Strip
+   9.  About Section
+   10. Tech Stack Section
+   11. Experience / Timeline
+   12. Projects Section
+   13. Certifications Section
+   14. GitHub Section
+   15. Achievements Section
+   16. Contact Section
+   17. Footer
+   18. Responsive (Mobile / Tablet)
+============================================================ */
+
+
+/* ============================================================
+   1. CSS VARIABLES
+   ▶ Change --blue or --green to retheme the whole site
+============================================================ */
+:root {
+  --bg:        #0f172a;
+  --bg2:       #111827;
+  --bg3:       #1e293b;
+  --card:      rgba(17, 24, 39, 0.85);
+  --glass:     rgba(255, 255, 255, 0.04);
+  --blue:      #3b82f6;
+  --blue-d:    #2563eb;
+  --blue-glow: rgba(59, 130, 246, 0.25);
+  --green:     #22c55e;
+  --text:      #e5e7eb;
+  --text2:     #9ca3af;
+  --text3:     #4b5563;
+  --border:    rgba(255, 255, 255, 0.07);
+  --border-h:  rgba(59, 130, 246, 0.4);
+  --r:         12px;
+  --r2:        20px;
+  --nav-h:     68px;
+  --tr:        all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* ============================================================
+   2. RESET & BASE
+============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 10%, rgba(59,130,246,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(34,197,94,0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+#bg-canvas { position: fixed; inset: 0; z-index: 0; opacity: 0.3; pointer-events: none; }
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--blue-d); border-radius: 4px; }
+
+
+/* ============================================================
+   3. CUSTOM CURSOR
+============================================================ */
+#cur {
+  position: fixed; z-index: 9999;
+  width: 8px; height: 8px;
+  background: var(--blue); border-radius: 50%;
+  pointer-events: none; transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+}
+#cur-ring {
+  position: fixed; z-index: 9998;
+  width: 32px; height: 32px;
+  border: 1px solid rgba(59,130,246,0.5); border-radius: 50%;
+  pointer-events: none; transform: translate(-50%, -50%);
+  transition: width .3s, height .3s, border-color .3s;
+}
+body:has(a:hover) #cur-ring,
+body:has(button:hover) #cur-ring { width: 48px; height: 48px; border-color: var(--blue); }
+
+
+/* ============================================================
+   4. NAVBAR
+============================================================ */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  height: var(--nav-h);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 max(40px, calc((100vw - 1200px) / 2));
+  background: rgba(15,23,42,0.8);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-size: 18px; font-weight: 700; color: var(--text);
+  text-decoration: none; display: flex; align-items: center; gap: 8px;
+}
+.nav-logo .dot {
+  width: 8px; height: 8px; background: var(--blue);
+  border-radius: 50%; box-shadow: 0 0 10px var(--blue);
+  animation: breathe 2s ease-in-out infinite;
+}
+@keyframes breathe {
+  0%,100% { opacity:1; transform:scale(1); }
+  50%      { opacity:.6; transform:scale(0.8); }
+}
+.nav-links { display: flex; gap: 2px; list-style: none; }
+.nav-links a {
+  padding: 7px 14px; border-radius: 8px;
+  font-size: 13.5px; font-weight: 500; color: var(--text2);
+  text-decoration: none; transition: var(--tr);
+}
+.nav-links a:hover,
+.nav-links a.active { color: var(--text); background: var(--glass); }
+.nav-links a.active  { color: var(--blue); }
+.nav-cta {
+  background: var(--blue); color: #fff;
+  padding: 9px 20px; border-radius: 8px;
+  font-size: 13.5px; font-weight: 600;
+  text-decoration: none; border: none; cursor: none;
+  transition: var(--tr); display: flex; align-items: center; gap: 6px;
+}
+.nav-cta:hover { background: var(--blue-d); transform: translateY(-1px); box-shadow: 0 4px 20px var(--blue-glow); }
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; background: none; border: none; padding: 8px;
+}
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--text2); border-radius: 2px; }
+.mob-nav {
+  display: none; position: fixed; inset: 0; z-index: 99;
+  background: rgba(15,23,42,0.97); backdrop-filter: blur(20px);
+  flex-direction: column; align-items: center; justify-content: center; gap: 28px;
+}
+.mob-nav.open { display: flex; }
+.mob-nav a { font-size: 28px; font-weight: 700; color: var(--text); text-decoration: none; transition: color .2s; }
+.mob-nav a:hover { color: var(--blue); }
+.mob-close { position: absolute; top: 24px; right: 28px; background: none; border: none; color: var(--text2); font-size: 26px; cursor: none; }
+
+
+/* ============================================================
+   5. SCROLL REVEAL ANIMATIONS
+   Sections are visible by default (safety fallback).
+   When JS loads OK, .js-ready is added to <html>,
+   which enables the slide-up entrance animations.
+============================================================ */
+[data-r]       { opacity: 1; transform: none; transition: opacity .65s ease, transform .65s ease; }
+[data-r].vis   { opacity: 1; transform: none; }
+.js-ready [data-r]     { opacity: 0; transform: translateY(28px); }
+.js-ready [data-r].vis { opacity: 1; transform: none; }
+
+/* Stagger delays */
+[data-r][data-d="1"] { transition-delay: .08s; }
+[data-r][data-d="2"] { transition-delay: .16s; }
+[data-r][data-d="3"] { transition-delay: .24s; }
+[data-r][data-d="4"] { transition-delay: .32s; }
+[data-r][data-d="5"] { transition-delay: .40s; }
+[data-r][data-d="6"] { transition-delay: .48s; }
+
+@keyframes slideDown { from{opacity:0;transform:translateY(-16px)} to{opacity:1;transform:none} }
+@keyframes slideUp   { from{opacity:0;transform:translateY(24px)}  to{opacity:1;transform:none} }
+@keyframes float3d {
+  0%,100% { transform: rotateX(4deg) rotateY(-8deg) translateY(0); }
+  33%     { transform: rotateX(-3deg) rotateY(6deg) translateY(-8px); }
+  66%     { transform: rotateX(6deg) rotateY(-4deg) translateY(-4px); }
+}
+
+
+/* ============================================================
+   6. LAYOUT HELPERS & SHARED COMPONENTS
+============================================================ */
+.wrap   { max-width: 1200px; margin: 0 auto; padding: 0 40px; position: relative; z-index: 2; }
+section { padding: 100px 0; position: relative; z-index: 2; }
+.bg-alt { background: var(--bg2); }
+.glass-divider {
+  position: relative; z-index: 2; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+.sec-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Fira Code', monospace; font-size: 11.5px; color: var(--blue);
+  letter-spacing: .14em; text-transform: uppercase;
+  background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2);
+  padding: 5px 14px; border-radius: 100px; margin-bottom: 18px;
+}
+.sec-title { font-size: clamp(32px, 5vw, 48px); font-weight: 800; line-height: 1.15; letter-spacing: -1px; color: var(--text); margin-bottom: 16px; }
+.sec-sub   { font-size: 16px; color: var(--text2); max-width: 560px; line-height: 1.7; margin-bottom: 56px; }
+.btn-p {
+  background: var(--blue); color: #fff; padding: 13px 28px; border-radius: 10px;
+  font-size: 14.5px; font-weight: 600; text-decoration: none; border: none; cursor: none;
+  transition: var(--tr); display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-p:hover { background: var(--blue-d); transform: translateY(-2px); box-shadow: 0 8px 30px var(--blue-glow); }
+.btn-o {
+  background: var(--glass); color: var(--text); padding: 13px 28px; border-radius: 10px;
+  font-size: 14.5px; font-weight: 600; border: 1px solid var(--border);
+  text-decoration: none; cursor: none; transition: var(--tr);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-o:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-2px); }
+.soc {
+  width: 40px; height: 40px; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--glass);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text2); text-decoration: none; transition: var(--tr);
+}
+.soc:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-3px); background: rgba(59,130,246,0.08); }
+.soc svg { width: 17px; height: 17px; }
+.p-tag {
+  font-family: 'Fira Code', monospace; font-size: 10.5px;
+  background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.18);
+  color: var(--blue); padding: 3px 10px; border-radius: 6px;
+}
+.text-bright { color: var(--text); font-weight: 600; }
+.text-blue   { color: var(--blue); font-weight: 600; }
+#btt {
+  position: fixed; bottom: 28px; right: 28px; z-index: 900;
+  width: 44px; height: 44px; border-radius: 10px;
+  background: var(--blue); color: #fff; border: none; cursor: none;
+  display: flex; align-items: center; justify-content: center; font-size: 18px;
+  opacity: 0; transform: translateY(20px); transition: var(--tr);
+  box-shadow: 0 4px 20px var(--blue-glow);
+}
+#btt.vis    { opacity: 1; transform: none; }
+#btt:hover  { transform: translateY(-4px); }
+
+
+/* ============================================================
+   7. HERO SECTION
+============================================================ */
+#hero        { min-height: 100vh; display: flex; align-items: center; padding-top: var(--nav-h); }
+.hero-inner  { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; width: 100%; }
+.hero-badge  {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--glass); border: 1px solid var(--border);
+  border-radius: 100px; padding: 8px 18px; font-size: 13px; color: var(--text2);
+  margin-bottom: 28px; animation: slideDown .8s ease both;
+}
+.hero-badge .dot-g { width: 7px; height: 7px; background: var(--green); border-radius: 50%; box-shadow: 0 0 8px var(--green); animation: breathe 2s infinite; }
+.hero-name  { font-size: clamp(48px, 7vw, 80px); font-weight: 900; line-height: 1; letter-spacing: -2.5px; color: var(--text); margin-bottom: 16px; animation: slideUp .9s .1s ease both; }
+.hero-name .blue { color: var(--blue); }
+.hero-role  { font-size: clamp(18px, 2.5vw, 22px); font-weight: 500; color: var(--text2); margin-bottom: 24px; animation: slideUp .9s .2s ease both; min-height: 32px; }
+.hero-role .tw { color: var(--blue); font-weight: 600; }
+.hero-desc  { font-size: 16px; color: var(--text2); line-height: 1.8; max-width: 480px; margin-bottom: 36px; animation: slideUp .9s .3s ease both; }
+.hero-btns  { display: flex; gap: 12px; flex-wrap: wrap; animation: slideUp .9s .4s ease both; margin-bottom: 44px; }
+.hero-socials { display: flex; gap: 12px; animation: slideUp .9s .5s ease both; }
+.hero-visual  { display: flex; align-items: center; justify-content: center; animation: slideUp .9s .2s ease both; }
+.hero-3d-wrap { perspective: 800px; }
+.hero-card-3d {
+  width: 340px; height: 420px;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 24px; padding: 32px; position: relative; overflow: hidden;
+  transform-style: preserve-3d; transition: transform .4s ease;
+  animation: float3d 6s ease-in-out infinite;
+}
+.hero-card-3d::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(59,130,246,0.12) 0%, transparent 60%); pointer-events: none; }
+.hero-card-3d::after  { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(59,130,246,0.6), transparent); }
+.card-avatar   { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--blue), #8b5cf6); display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 900; color: #fff; margin-bottom: 18px; box-shadow: 0 8px 32px var(--blue-glow); }
+.card-name     { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+.card-role     { font-size: 13.5px; color: var(--blue); margin-bottom: 24px; font-family: 'Fira Code', monospace; font-weight: 500; }
+.card-stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+.card-stat     { background: var(--glass); border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
+.card-stat-n   { font-size: 22px; font-weight: 800; color: var(--blue); }
+.card-stat-l   { font-size: 10.5px; color: var(--text2); margin-top: 2px; }
+.card-skills   { display: flex; flex-wrap: wrap; gap: 7px; }
+.card-sk       { font-family: 'Fira Code', monospace; font-size: 10px; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); color: var(--blue); padding: 4px 10px; border-radius: 6px; }
+.card-glow     { position: absolute; bottom: -60px; right: -60px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(59,130,246,0.15), transparent 70%); pointer-events: none; }
+
+
+/* ============================================================
+   8. STATS STRIP
+============================================================ */
+.stats-strip       { position: relative; z-index: 2; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--card); }
+.stats-strip-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: repeat(4, 1fr); }
+.stat-item { padding: 36px 24px; text-align: center; border-right: 1px solid var(--border); position: relative; }
+.stat-item:last-child { border-right: none; }
+.stat-item::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 2px; background: var(--blue); transition: width .4s ease; }
+.stat-item:hover::after { width: 60%; }
+.stat-n { font-size: 40px; font-weight: 900; color: var(--blue); line-height: 1; letter-spacing: -1px; }
+.stat-l { font-size: 12.5px; color: var(--text2); margin-top: 6px; }
+
+
+/* ============================================================
+   9. ABOUT SECTION
+============================================================ */
+.about-grid  { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: start; }
+.about-card  { background: var(--card); border: 1px solid var(--border); border-radius: var(--r2); padding: 36px; position: relative; overflow: hidden; }
+.about-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--blue), transparent); }
+.about-avatar { width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, var(--blue), #8b5cf6); display: flex; align-items: center; justify-content: center; font-size: 38px; font-weight: 900; color: #fff; margin-bottom: 20px; box-shadow: 0 12px 40px var(--blue-glow); }
+.about-card h3   { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+.about-card .role { font-size: 13.5px; color: var(--blue); font-family: 'Fira Code', monospace; margin-bottom: 20px; font-weight: 600; }
+.detail-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 13.5px; }
+.detail-row:last-child { border-bottom: none; }
+.detail-row .icon { color: var(--blue); font-size: 14px; width: 20px; text-align: center; }
+.detail-row .val  { color: var(--text2); }
+.detail-row .val a { color: var(--blue); text-decoration: none; }
+.bio-text { color: var(--text2); font-size: 15.5px; line-height: 1.8; margin-bottom: 16px; }
+.about-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+.about-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 28px; }
+.highlight-card { background: var(--glass); border: 1px solid var(--border); border-radius: var(--r); padding: 18px; transition: var(--tr); }
+.highlight-card:hover { border-color: var(--border-h); transform: translateY(-2px); }
+.highlight-card .h-icon  { font-size: 22px; margin-bottom: 8px; }
+.highlight-card .h-title { font-size: 13.5px; font-weight: 600; margin-bottom: 4px; }
+.highlight-card .h-sub   { font-size: 12px; color: var(--text2); }
+
+
+/* ============================================================
+   10. TECH STACK SECTION
+============================================================ */
+#tech { background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%); }
+.tech-categories { display: flex; flex-direction: column; gap: 40px; }
+.tech-cat-title  { font-size: 13px; font-family: 'Fira Code', monospace; color: var(--text2); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 20px; }
+.tech-row  { display: flex; flex-wrap: wrap; gap: 12px; }
+.tech-pill { display: flex; align-items: center; gap: 10px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px 18px; font-size: 13.5px; font-weight: 500; color: var(--text); transition: var(--tr); position: relative; overflow: hidden; }
+.tech-pill::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(59,130,246,0.06), transparent); opacity: 0; transition: opacity .3s; }
+.tech-pill:hover { border-color: var(--border-h); transform: translateY(-3px); box-shadow: 0 8px 24px var(--blue-glow); }
+.tech-pill:hover::before { opacity: 1; }
+.t-icon  { font-size: 20px; }
+.t-level { font-size: 10px; font-family: 'Fira Code', monospace; color: var(--blue); background: rgba(59,130,246,0.1); padding: 2px 8px; border-radius: 100px; margin-left: 4px; }
+
+
+/* ============================================================
+   11. EXPERIENCE / TIMELINE
+============================================================ */
+.exp-timeline { position: relative; padding-left: 32px; }
+.exp-timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--blue), rgba(59,130,246,0.1)); }
+.exp-item { position: relative; margin-bottom: 48px; }
+.exp-item::before { content: ''; position: absolute; left: -38px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 3px rgba(59,130,246,0.2), 0 0 16px var(--blue); }
+.exp-header  { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; flex-wrap: wrap; gap: 12px; }
+.exp-title   { font-size: 19px; font-weight: 700; margin-bottom: 4px; }
+.exp-company { font-size: 14px; color: var(--blue); font-family: 'Fira Code', monospace; }
+.exp-date    { font-size: 12px; font-family: 'Fira Code', monospace; color: var(--text2); background: var(--glass); border: 1px solid var(--border); padding: 5px 14px; border-radius: 100px; white-space: nowrap; }
+.exp-card    { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 24px; transition: var(--tr); }
+.exp-card:hover { border-color: var(--border-h); }
+.exp-meta    { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
+.exp-tag     { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-family: 'Fira Code', monospace; color: var(--text2); background: var(--glass); border: 1px solid var(--border); padding: 5px 12px; border-radius: 8px; }
+.exp-tag.green { color: var(--green); background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.25); }
+.exp-points  { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.exp-points li { display: flex; gap: 12px; font-size: 14px; color: var(--text2); line-height: 1.7; }
+.exp-points li::before { content: '▸'; color: var(--blue); flex-shrink: 0; margin-top: 2px; }
+.exp-tech    { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--border); }
+strong.hl    { color: var(--text); font-weight: 600; }
+
+
+/* ============================================================
+   12. PROJECTS SECTION
+============================================================ */
+.proj-filter { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
+.pf-btn { padding: 8px 18px; border-radius: 8px; font-size: 13px; font-weight: 500; border: 1px solid var(--border); background: var(--glass); color: var(--text2); cursor: none; transition: var(--tr); font-family: 'Inter', sans-serif; }
+.pf-btn:hover, .pf-btn.on { border-color: var(--blue); color: var(--blue); background: rgba(59,130,246,0.08); }
+.proj-grid  { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.proj-card  { background: var(--card); border: 1px solid var(--border); border-radius: var(--r2); overflow: hidden; transition: var(--tr); position: relative; display: flex; flex-direction: column; }
+.proj-card:hover { border-color: var(--border-h); transform: translateY(-6px); box-shadow: 0 20px 60px rgba(59,130,246,0.12); }
+.proj-banner { height: 160px; display: flex; align-items: center; justify-content: center; font-size: 56px; position: relative; overflow: hidden; }
+.proj-banner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(17,24,39,0.9)); }
+.b-data { background: linear-gradient(135deg, #0c1445, #1a3a5c); }
+.b-ai   { background: linear-gradient(135deg, #0c2340, #1a4060); }
+.b-web  { background: linear-gradient(135deg, #0c1a30, #1a2a50); }
+.proj-body    { padding: 22px; display: flex; flex-direction: column; flex: 1; }
+.proj-head    { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; gap: 8px; }
+.proj-name    { font-size: 17px; font-weight: 700; }
+.proj-star    { font-size: 11px; color: var(--text2); font-family: 'Fira Code', monospace; }
+.proj-desc    { font-size: 13.5px; color: var(--text2); line-height: 1.65; margin-bottom: 16px; flex: 1; }
+.proj-tags    { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 18px; }
+.proj-metrics { display: flex; gap: 16px; margin-bottom: 18px; }
+.pm           { font-size: 12px; color: var(--green); font-family: 'Fira Code', monospace; }
+.proj-links   { display: flex; gap: 10px; margin-top: auto; }
+.plink { font-size: 12.5px; font-weight: 600; color: var(--text2); text-decoration: none; display: flex; align-items: center; gap: 5px; background: var(--glass); border: 1px solid var(--border); padding: 8px 16px; border-radius: 8px; transition: var(--tr); }
+.plink:hover  { color: var(--text); border-color: var(--border-h); transform: translateY(-1px); }
+
+
+/* ============================================================
+   13. CERTIFICATIONS SECTION
+============================================================ */
+.certs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.cert-card  { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 24px; transition: var(--tr); position: relative; overflow: hidden; display: flex; flex-direction: column; }
+.cert-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--blue-d), var(--blue), #8b5cf6); transform: scaleX(0); transform-origin: left; transition: transform .4s ease; }
+.cert-card:hover { border-color: var(--border-h); transform: translateY(-4px); box-shadow: 0 12px 40px var(--blue-glow); }
+.cert-card:hover::before { transform: scaleX(1); }
+.cert-logo   { font-size: 32px; margin-bottom: 14px; }
+.cert-name   { font-size: 15px; font-weight: 700; margin-bottom: 6px; line-height: 1.4; }
+.cert-issuer { font-size: 12px; color: var(--blue); font-family: 'Fira Code', monospace; margin-bottom: 10px; text-transform: uppercase; }
+.cert-desc   { font-size: 12.5px; color: var(--text2); line-height: 1.6; flex: 1; margin-bottom: 16px; }
+.cert-date   { font-size: 11px; font-family: 'Fira Code', monospace; color: var(--text3); }
+.cert-badge  { position: absolute; top: 16px; right: 16px; font-size: 10px; font-family: 'Fira Code', monospace; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); color: var(--green); padding: 3px 10px; border-radius: 100px; }
+
+
+/* ============================================================
+   14. GITHUB SECTION
+============================================================ */
+.github-grid   { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.gh-card       { background: var(--card); border: 1px solid var(--border); border-radius: var(--r2); padding: 28px; transition: var(--tr); }
+.gh-card:hover { border-color: var(--border-h); }
+.gh-card-title { font-size: 15px; font-weight: 600; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.gh-stat-row   { display: flex; gap: 20px; margin-bottom: 24px; flex-wrap: wrap; }
+.gh-stat-n     { font-size: 30px; font-weight: 800; color: var(--blue); line-height: 1; }
+.gh-stat-l     { font-size: 11px; color: var(--text2); margin-top: 4px; }
+.contrib-graph { display: grid; grid-template-columns: repeat(52, 1fr); gap: 2px; }
+.cg-cell       { aspect-ratio: 1; border-radius: 2px; transition: transform .2s; }
+.cg-cell:hover { transform: scale(1.4); }
+.cg-0 { background: #161b22; }
+.cg-1 { background: #0e4429; }
+.cg-2 { background: #006d32; }
+.cg-3 { background: #26a641; }
+.cg-4 { background: #39d353; }
+.lang-bars  { display: flex; flex-direction: column; gap: 14px; }
+.lang-row   { display: flex; flex-direction: column; gap: 6px; }
+.lang-head  { display: flex; justify-content: space-between; font-size: 13px; }
+.lang-pct   { font-family: 'Fira Code', monospace; font-size: 12px; color: var(--text2); }
+.lang-track { height: 4px; background: var(--bg3); border-radius: 4px; overflow: hidden; }
+.lang-fill  { height: 100%; border-radius: 4px; width: 0; transition: width 1.4s cubic-bezier(.4,0,.2,1); }
+
+
+/* ============================================================
+   15. ACHIEVEMENTS SECTION
+============================================================ */
+.ach-grid  { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.ach-card  { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 24px; transition: var(--tr); }
+.ach-card:hover { border-color: var(--border-h); transform: translateY(-4px); }
+.ach-icon  { font-size: 32px; margin-bottom: 14px; }
+.ach-title { font-size: 16px; font-weight: 700; margin-bottom: 5px; }
+.ach-org   { font-size: 11.5px; color: var(--blue); font-family: 'Fira Code', monospace; margin-bottom: 10px; text-transform: uppercase; }
+.ach-desc  { font-size: 13px; color: var(--text2); line-height: 1.6; }
+.ach-date  { font-size: 11px; color: var(--text3); margin-top: 14px; font-family: 'Fira Code', monospace; }
+
+
+/* ============================================================
+   16. CONTACT SECTION
+============================================================ */
+.contact-wrapper { background: var(--card); border: 1px solid var(--border); border-radius: var(--r2); overflow: hidden; display: grid; grid-template-columns: 1fr 1.5fr; }
+.contact-left    { padding: 48px 40px; background: linear-gradient(135deg, rgba(59,130,246,0.08) 0%, transparent 100%); border-right: 1px solid var(--border); }
+.contact-left h3 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+.contact-left p  { font-size: 14.5px; color: var(--text2); line-height: 1.7; margin-bottom: 32px; }
+.cinfo      { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+.cinfo-icon { width: 42px; height: 42px; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
+.cinfo-l    { font-size: 11px; color: var(--text3); font-family: 'Fira Code', monospace; }
+.cinfo-v    { font-size: 14px; color: var(--text); font-weight: 500; margin-top: 2px; }
+.cinfo-v a  { color: var(--blue); text-decoration: none; }
+.contact-socials { display: flex; gap: 10px; margin-top: 32px; }
+.contact-right   { padding: 48px 40px; }
+.form    { display: flex; flex-direction: column; gap: 18px; }
+.form-r  { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.fg      { display: flex; flex-direction: column; gap: 7px; }
+.fg label { font-size: 12px; color: var(--text2); font-family: 'Fira Code', monospace; letter-spacing: .05em; }
+.fg input, .fg textarea {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 8px; padding: 13px 16px; color: var(--text);
+  font-family: 'Inter', sans-serif; font-size: 14px;
+  transition: var(--tr); resize: none; outline: none;
+}
+.fg input:focus, .fg textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-glow); }
+.fg textarea { height: 120px; }
+.form-success { display: none; background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.3); border-radius: 8px; padding: 14px 18px; color: var(--green); font-size: 14px; text-align: center; }
+
+
+/* ============================================================
+   17. FOOTER
+============================================================ */
+footer        { position: relative; z-index: 2; background: var(--bg); border-top: 1px solid var(--border); padding: 40px 0; }
+.footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+.footer-logo  { font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+.f-dot-blue   { width: 8px; height: 8px; background: var(--blue); border-radius: 50%; box-shadow: 0 0 10px var(--blue); animation: breathe 2s infinite; }
+.footer-copy  { font-size: 13px; color: var(--text3); }
+.footer-status { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--text2); font-family: 'Fira Code', monospace; }
+.f-dot        { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); animation: breathe 2s infinite; }
+.footer-socials { display: flex; gap: 10px; }
+
+
+/* ============================================================
+   18. RESPONSIVE
+   1024px = tablet  |  768px = mobile
+============================================================ */
+@media (max-width: 1024px) {
+  .wrap, .footer-inner, .stats-strip-inner { padding: 0 24px; }
+  nav { padding: 0 24px; }
+  .hero-inner  { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .about-grid  { grid-template-columns: 1fr; gap: 40px; }
+  .proj-grid   { grid-template-columns: repeat(2, 1fr); }
+  .certs-grid  { grid-template-columns: repeat(2, 1fr); }
+  .ach-grid    { grid-template-columns: repeat(2, 1fr); }
+  .github-grid { grid-template-columns: 1fr; }
+  .stats-strip-inner { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .nav-links, .nav-cta { display: none; }
+  .hamburger  { display: flex; }
+  .proj-grid, .certs-grid, .ach-grid { grid-template-columns: 1fr; }
+  .contact-wrapper { grid-template-columns: 1fr; }
+  .contact-left    { border-right: none; border-bottom: 1px solid var(--border); }
+  .form-r  { grid-template-columns: 1fr; }
+  section  { padding: 70px 0; }
+}
