@@ -1,4 +1,4 @@
- Hi 👋 I'm Prem Nawale
+ Hi 👋 I'm Prem Nawale 
 
 🎓 IT Student | 📊 Data Analytics Enthusiast | 💻 Python & Django Developer  
 
@@ -77,7 +77,7 @@ Machine learning model built using **Python** to predict student academic perfor
 - GitHub: https://github.com/PremNawale3
 - LinkedIn: https://www.linkedin.com/in/prem-nawale-b631b6326/
 - Email: premnawale3@gmail.com
-
+- Portfolio: https://premnawale3.github.io/Prem_Nawale_Portfolio/
 ---
 
 ⭐ *If you like my work, consider giving a star to my repositories.*
