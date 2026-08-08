@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <!-- EmailJS SDK for real contact form delivery -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
 
@@ -16,10 +18,7 @@
   <div id="cur-ring"></div>
   <canvas id="bg-canvas"></canvas>
 
-  <!-- ============================================================
-       NAVBAR
-       EDIT: nav links, resume href
-  ============================================================ -->
+  <!-- NAVBAR -->
   <nav id="navbar">
     <a href="#hero" class="nav-logo"><div class="dot"></div>Prem Nawale</a>
     <ul class="nav-links">
@@ -50,11 +49,7 @@
     <a href="#contact"   onclick="closeMob()">Contact</a>
   </div>
 
-  <!-- ============================================================
-       HERO SECTION
-       EDIT: badge, name, bio, social links
-       Typewriter words → js/main.js Section E
-  ============================================================ -->
+  <!-- HERO SECTION -->
   <section id="hero">
     <div class="wrap">
       <div class="hero-inner">
@@ -97,7 +92,7 @@
               <div class="card-skills">
                 <span class="card-sk">Python</span><span class="card-sk">Power BI</span>
                 <span class="card-sk">ML</span><span class="card-sk">SQL</span>
-                <span class="card-sk">Django</span><span class="card-sk">EDA</span>
+                <span class="card-sk">Django</span><span class="card-sk">React</span>
               </div>
               <div class="card-glow"></div>
             </div>
@@ -107,9 +102,7 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       STATS STRIP — EDIT: data-count values
-  ============================================================ -->
+  <!-- STATS STRIP -->
   <div class="stats-strip">
     <div class="stats-strip-inner">
       <div class="stat-item" data-r><div class="stat-n" data-count="3">0+</div><div class="stat-l">Projects Built</div></div>
@@ -121,9 +114,7 @@
 
   <div class="glass-divider"></div>
 
-  <!-- ============================================================
-       ABOUT SECTION — EDIT: detail rows, bio, highlights
-  ============================================================ -->
+  <!-- ABOUT SECTION -->
   <section id="about">
     <div class="wrap">
       <div class="about-grid">
@@ -135,7 +126,7 @@
             <div class="detail-row"><span class="icon">📍</span><span class="val">Pune, Maharashtra, India</span></div>
             <div class="detail-row"><span class="icon">📞</span><span class="val">+91-8956571203</span></div>
             <div class="detail-row"><span class="icon">✉️</span><span class="val"><a href="mailto:Premnawale3@gmail.com">Premnawale3@gmail.com</a></span></div>
-            <div class="detail-row"><span class="icon">🎓</span><span class="val">B.Tech ITDS · 8.5 CGPA</span></div>
+            <div class="detail-row"><span class="icon">🎓</span><span class="val">B.Tech ITDS · 8.5 CGPA · 2022–2026</span></div>
             <div class="detail-row"><span class="icon">💼</span><span class="val"><a href="https://www.linkedin.com/in/prem-nawale-b631b6326/" target="_blank">linkedin.com/in/prem-nawale</a></span></div>
             <div class="detail-row"><span class="icon">⌥</span><span class="val"><a href="https://github.com/PremNawale3" target="_blank">github.com/PremNawale3</a></span></div>
           </div>
@@ -144,8 +135,8 @@
           <span class="sec-label" data-r>About Me</span>
           <h2 class="sec-title" data-r>Turning Data into<br>Decisions.</h2>
           <div data-r>
-            <p class="bio-text">I'm a final-year <strong class="text-bright">B.Tech IT &amp; Data Science</strong> student at Ajeenkya DY Patil University, Pune, maintaining a <strong class="text-blue">8.5 CGPA</strong>. My work sits at the intersection of data engineering, machine learning, and intelligent web applications.</p>
-            <p class="bio-text">At <strong class="text-bright">Cognifyz Technologies</strong>, I built end-to-end ML pipelines, automated analysis workflows, and delivered interactive dashboards that powered real academic decisions.</p>
+            <p class="bio-text">I'm a final-year <strong class="text-bright">B.Tech IT &amp; Data Science</strong> student at Ajeenkya DY Patil University, Pune, maintaining a <strong class="text-blue">8.5 CGPA</strong>. My work spans the full analytics lifecycle — data cleaning, EDA, machine learning, and BI dashboarding — combined with practical web development skills (Flask, Django, React).</p>
+            <p class="bio-text">At <strong class="text-bright">Cognifyz Technologies</strong>, I built end-to-end ML pipelines, automated analysis workflows, and delivered interactive dashboards that powered real academic decisions. Seeking a remote role in data-driven decision-making with growth into full-stack and applied ML work.</p>
             <div class="about-btns">
               <a href="https://drive.google.com/file/d/1XqYWYV7ISY3jD_2T98XvO_VEzoqmsY0Y/view?usp=drive_link" target="_blank" class="btn-p">↓ Download Resume</a>
               <a href="#contact" class="btn-o">Let's Talk</a>
@@ -154,8 +145,8 @@
           <div class="about-highlights" data-r>
             <div class="highlight-card"><div class="h-icon">🔬</div><div class="h-title">Data Engineering</div><div class="h-sub">EDA, Feature Engineering, ML Pipelines</div></div>
             <div class="highlight-card"><div class="h-icon">📊</div><div class="h-title">BI & Dashboards</div><div class="h-sub">Power BI, Matplotlib, Seaborn</div></div>
-            <div class="highlight-card"><div class="h-icon">🤖</div><div class="h-title">Machine Learning</div><div class="h-sub">Scikit-learn, Deep Learning, NLP</div></div>
-            <div class="highlight-card"><div class="h-icon">🌐</div><div class="h-title">Web Development</div><div class="h-sub">Django, Flask, HTML/CSS/JS</div></div>
+            <div class="highlight-card"><div class="h-icon">🤖</div><div class="h-title">Machine Learning</div><div class="h-sub">Scikit-learn, Deep Learning, Statistical Analysis</div></div>
+            <div class="highlight-card"><div class="h-icon">🌐</div><div class="h-title">Web Development</div><div class="h-sub">Django, Flask, React, HTML/CSS/JS</div></div>
           </div>
         </div>
       </div>
@@ -164,9 +155,7 @@
 
   <div class="glass-divider"></div>
 
-  <!-- ============================================================
-       TECH STACK — EDIT: add/remove .tech-pill items
-  ============================================================ -->
+  <!-- TECH STACK -->
   <section id="tech">
     <div class="wrap">
       <span class="sec-label" data-r>Tech Stack</span>
@@ -179,8 +168,6 @@
             <div class="tech-pill"><span class="t-icon">🐍</span> Python <span class="t-level">Expert</span></div>
             <div class="tech-pill"><span class="t-icon">📊</span> R <span class="t-level">Intermediate</span></div>
             <div class="tech-pill"><span class="t-icon">🗃️</span> SQL <span class="t-level">Advanced</span></div>
-            <div class="tech-pill"><span class="t-icon">⚡</span> JavaScript <span class="t-level">Intermediate</span></div>
-            <div class="tech-pill"><span class="t-icon">☕</span> Java <span class="t-level">Intermediate</span></div>
             <div class="tech-pill"><span class="t-icon">💻</span> C <span class="t-level">Intermediate</span></div>
           </div>
         </div>
@@ -199,18 +186,20 @@
           <div class="tech-cat-title">Tools & Platforms</div>
           <div class="tech-row">
             <div class="tech-pill"><span class="t-icon">📊</span> Power BI <span class="t-level">Advanced</span></div>
+            <div class="tech-pill"><span class="t-icon">📋</span> Power Query <span class="t-level">Advanced</span></div>
             <div class="tech-pill"><span class="t-icon">📋</span> Excel <span class="t-level">Advanced</span></div>
             <div class="tech-pill"><span class="t-icon">🐘</span> PostgreSQL <span class="t-level">Intermediate</span></div>
-            <div class="tech-pill"><span class="t-icon">🐧</span> Linux <span class="t-level">Intermediate</span></div>
             <div class="tech-pill"><span class="t-icon">🔧</span> Git <span class="t-level">Advanced</span></div>
           </div>
         </div>
         <div data-r>
           <div class="tech-cat-title">Web Frameworks</div>
           <div class="tech-row">
+            <div class="tech-pill"><span class="t-icon">⚛️</span> React <span class="t-level">Intermediate</span></div>
             <div class="tech-pill"><span class="t-icon">🦄</span> Django <span class="t-level">Intermediate</span></div>
             <div class="tech-pill"><span class="t-icon">🌶️</span> Flask <span class="t-level">Intermediate</span></div>
             <div class="tech-pill"><span class="t-icon">🎨</span> HTML/CSS <span class="t-level">Advanced</span></div>
+            <div class="tech-pill"><span class="t-icon">⚡</span> JavaScript <span class="t-level">Intermediate</span></div>
           </div>
         </div>
       </div>
@@ -219,10 +208,7 @@
 
   <div class="glass-divider"></div>
 
-  <!-- ============================================================
-       EXPERIENCE — EDIT: title, company, date, bullets, tech
-       To add another job: copy the .exp-item block
-  ============================================================ -->
+  <!-- EXPERIENCE -->
   <section id="experience" class="bg-alt">
     <div class="wrap">
       <span class="sec-label" data-r>Experience</span>
@@ -239,14 +225,14 @@
           </div>
           <div class="exp-card">
             <div class="exp-meta">
-              <span class="exp-tag">📍 Remote / Pune</span>
+              <span class="exp-tag">📍 Remote</span>
               <span class="exp-tag">💼 Internship · 3 Months</span>
               <span class="exp-tag green">✓ Completed</span>
             </div>
             <ul class="exp-points">
               <li><span>Built an <strong class="hl">end-to-end ML-based Student Management System</strong> — covering full data preprocessing, EDA, and feature engineering to analyse student performance at scale.</span></li>
-              <li><span>Designed <strong class="hl">automated data workflows and analysis pipelines</strong> to streamline model training, evaluation, and performance optimization cycles.</span></li>
-              <li><span>Developed <strong class="hl">interactive dashboards and analytical reports</strong> delivering actionable insights for data-driven academic decision-making.</span></li>
+              <li><span>Designed <strong class="hl">automated data workflows and analysis pipelines</strong> supporting model training, evaluation, and performance optimization cycles.</span></li>
+              <li><span>Developed <strong class="hl">interactive dashboards and analytical reports</strong> that drove data-driven academic decision-making.</span></li>
             </ul>
             <div class="exp-tech">
               <span class="p-tag">Python</span><span class="p-tag">Pandas</span>
@@ -255,16 +241,11 @@
             </div>
           </div>
         </div>
-        <!-- PASTE MORE .exp-item BLOCKS HERE -->
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       PROJECTS — EDIT: name, desc, tags, GitHub href
-       data-cat: "data" | "ai" | "web"
-       To add more: copy a .proj-card block
-  ============================================================ -->
+  <!-- PROJECTS -->
   <section id="projects">
     <div class="wrap">
       <span class="sec-label" data-r>Projects</span>
@@ -281,7 +262,7 @@
           <div class="proj-banner b-ai">🤖</div>
           <div class="proj-body">
             <div class="proj-head"><div class="proj-name">EduTutor AI</div><div class="proj-star">⭐ Featured</div></div>
-            <div class="proj-desc">Web-based educational chatbot providing interactive learning support for Python, AI, and ML concepts. Modular Flask backend with real-time responsive UI.</div>
+            <div class="proj-desc">Web-based educational chatbot providing interactive learning support for Python, AI, and ML concepts. Modular Flask backend with real-time responsive UI and scalable architecture.</div>
             <div class="proj-tags"><span class="p-tag">Python</span><span class="p-tag">Flask</span><span class="p-tag">HTML/CSS</span><span class="p-tag">JavaScript</span><span class="p-tag">NLP</span></div>
             <div class="proj-metrics"><span class="pm">✦ Real-time Q&amp;A</span><span class="pm">✦ Modular Architecture</span></div>
             <div class="proj-links"><a href="https://github.com/PremNawale3/EduTutor-AI" target="_blank" class="plink">⌥ View on GitHub</a></div>
@@ -291,7 +272,7 @@
           <div class="proj-banner b-data">📊</div>
           <div class="proj-body">
             <div class="proj-head"><div class="proj-name">Ola Rides Dashboard</div><div class="proj-star">⭐ Featured</div></div>
-            <div class="proj-desc">Interactive Power BI dashboard analysing 10,000+ ride records. Identified peak demand hours, top drivers, and profitable routes with dynamic KPIs and drill-through reports.</div>
+            <div class="proj-desc">Interactive Power BI dashboard analysing 10,000+ ride records. Identified peak demand hours, top drivers, and profitable routes — improving driver allocation efficiency by 15%.</div>
             <div class="proj-tags"><span class="p-tag">Power BI</span><span class="p-tag">Power Query</span><span class="p-tag">DAX</span><span class="p-tag">Data Modelling</span></div>
             <div class="proj-metrics"><span class="pm">↑ 15% efficiency</span><span class="pm">✦ 10K+ records</span></div>
             <div class="proj-links"><a href="https://github.com/PremNawale3/Ola-Data-Analysis-" target="_blank" class="plink">⌥ View on GitHub</a></div>
@@ -301,24 +282,77 @@
           <div class="proj-banner b-web">🛒</div>
           <div class="proj-body">
             <div class="proj-head"><div class="proj-name">Flipkart Sales Analysis</div></div>
-            <div class="proj-desc">Django-based analytics tool for Flipkart sales data. Category, price range, and date filtering with SQL-backed storage, aggregations, and visual summary reports.</div>
+            <div class="proj-desc">Django-based analytics tool for Flipkart sales data. Category, price range, and date filtering with SQL-backed storage, aggregations, and visual summary reports on top products and revenue.</div>
             <div class="proj-tags"><span class="p-tag">Python</span><span class="p-tag">Django</span><span class="p-tag">SQL</span><span class="p-tag">Matplotlib</span><span class="p-tag">Pandas</span></div>
             <div class="proj-metrics"><span class="pm">✦ Visual Reports</span><span class="pm">✦ Trend Analysis</span></div>
             <div class="proj-links"><a href="https://github.com/PremNawale3/Project-Django" target="_blank" class="plink">⌥ View on GitHub</a></div>
           </div>
         </div>
-        <!-- PASTE MORE .proj-card BLOCKS HERE -->
       </div>
     </div>
   </section>
 
   <div class="glass-divider"></div>
 
-  <!-- ============================================================
-       CERTIFICATIONS — EDIT: cert details
-       cert-badge: "Verified" | "In Progress"
-       To add more: copy a .cert-card block
-  ============================================================ -->
+  <!-- EDUCATION (NEW SECTION) -->
+  <section id="education">
+    <div class="wrap">
+      <span class="sec-label" data-r>Education</span>
+      <h2 class="sec-title" data-r>Academic Background</h2>
+      <p class="sec-sub" data-r>Building a strong foundation in technology and data science.</p>
+      <div class="edu-timeline">
+        <div class="edu-item" data-r>
+          <div class="edu-icon">🎓</div>
+          <div class="edu-content">
+            <div class="edu-header">
+              <div>
+                <div class="edu-degree">B.Tech, Information Technology &amp; Data Science</div>
+                <div class="edu-school">Ajeenkya DY Patil University, Pune, Maharashtra</div>
+              </div>
+              <div class="edu-date">2022 — 2026</div>
+            </div>
+            <div class="edu-card">
+              <div class="edu-meta">
+                <span class="exp-tag">📍 Pune, Maharashtra</span>
+                <span class="exp-tag green">✓ Final Year</span>
+              </div>
+              <div class="edu-grade">
+                <span class="grade-label">CGPA</span>
+                <span class="grade-val">8.5 / 10</span>
+              </div>
+              <div class="edu-desc">Specializing in data science, machine learning, and full-stack web development. Active participant in hackathons, research projects, and university-level competitions.</div>
+            </div>
+          </div>
+        </div>
+        <div class="edu-item" data-r data-d="1">
+          <div class="edu-icon">📚</div>
+          <div class="edu-content">
+            <div class="edu-header">
+              <div>
+                <div class="edu-degree">Higher Secondary Education (12th)</div>
+                <div class="edu-school">Jubilee High School, Akola, Maharashtra</div>
+              </div>
+              <div class="edu-date">2021 — 2022</div>
+            </div>
+            <div class="edu-card">
+              <div class="edu-meta">
+                <span class="exp-tag">📍 Akola, Maharashtra</span>
+                <span class="exp-tag green">✓ Completed</span>
+              </div>
+              <div class="edu-grade">
+                <span class="grade-label">Score</span>
+                <span class="grade-val">8.1 / 10</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="glass-divider"></div>
+
+  <!-- CERTIFICATIONS -->
   <section id="certs" class="bg-alt">
     <div class="wrap">
       <span class="sec-label" data-r>Certifications</span>
@@ -327,18 +361,15 @@
       <div class="certs-grid">
         <div class="cert-card" data-r><span class="cert-badge">Verified</span><div class="cert-logo">🤖</div><div class="cert-name">Gen-AI Powered Data Analytics</div><div class="cert-issuer">Forage Job Simulation</div><div class="cert-desc">Industry-level simulation covering Gen-AI powered analytics, real-world datasets, and professional reporting frameworks.</div><div class="cert-date">2024</div></div>
         <div class="cert-card" data-r data-d="1"><span class="cert-badge">Verified</span><div class="cert-logo">🗃️</div><div class="cert-name">SQL for Data Analysis</div><div class="cert-issuer">Coursera</div><div class="cert-desc">Advanced SQL covering complex queries, joins, window functions, and performance optimisation for analytics workflows.</div><div class="cert-date">2023</div></div>
-        <div class="cert-card" data-r data-d="2"><span class="cert-badge">Verified</span><div class="cert-logo">🌿</div><div class="cert-name">Green Skills &amp; AI</div><div class="cert-issuer">EduNet Foundation</div><div class="cert-desc">Advanced course on green technology, AI applications for sustainability, and ethical AI practices for societal impact.</div><div class="cert-date">2023</div></div>
+        <div class="cert-card" data-r data-d="2"><span class="cert-badge">Verified</span><div class="cert-logo">🌿</div><div class="cert-name">Advanced Green Skills &amp; AI</div><div class="cert-issuer">Edunet Foundation</div><div class="cert-desc">Advanced course on green technology, AI applications for sustainability, and ethical AI practices for societal impact.</div><div class="cert-date">2023</div></div>
         <div class="cert-card" data-r><span class="cert-badge">Verified</span><div class="cert-logo">🔬</div><div class="cert-name">Data Analysis with Python</div><div class="cert-issuer">IBM</div><div class="cert-desc">IBM-certified in data analysis using Python — NumPy, Pandas, Matplotlib, Seaborn, and statistical analysis techniques.</div><div class="cert-date">2023</div></div>
         <div class="cert-card" data-r data-d="1"><span class="cert-badge">Verified</span><div class="cert-logo">⚡</div><div class="cert-name">AI on Jetson Nano</div><div class="cert-issuer">NVIDIA</div><div class="cert-desc">Deploying deep learning inference models on NVIDIA Jetson Nano edge devices for real-time AI applications.</div><div class="cert-date">2023</div></div>
-        <div class="cert-card" data-r data-d="2"><span class="cert-badge">In Progress</span><div class="cert-logo">📈</div><div class="cert-name">Advanced Machine Learning</div><div class="cert-issuer">Currently Learning</div><div class="cert-desc">Exploring deep learning, LangChain, transformer architectures, and advanced model deployment techniques.</div><div class="cert-date">2025 — Ongoing</div></div>
-        <!-- PASTE MORE .cert-card BLOCKS HERE -->
+        <div class="cert-card" data-r data-d="2"><span class="cert-badge in-prog">In Progress</span><div class="cert-logo">📈</div><div class="cert-name">Advanced Machine Learning</div><div class="cert-issuer">Currently Learning</div><div class="cert-desc">Exploring deep learning, LangChain, transformer architectures, and advanced model deployment techniques.</div><div class="cert-date">2025 — Ongoing</div></div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       GITHUB — EDIT: data-count numbers, data-w percentages
-  ============================================================ -->
+  <!-- GITHUB -->
   <section id="github">
     <div class="wrap">
       <span class="sec-label" data-r>GitHub Activity</span>
@@ -372,28 +403,39 @@
 
   <div class="glass-divider"></div>
 
-  <!-- ============================================================
-       ACHIEVEMENTS — EDIT: title, org, desc, date
-       To add more: copy an .ach-card block
-  ============================================================ -->
+  <!-- ACHIEVEMENTS -->
   <section id="achievements">
     <div class="wrap">
       <span class="sec-label" data-r>Recognition</span>
       <h2 class="sec-title" data-r>Achievements &amp; Awards</h2>
       <p class="sec-sub" data-r>Competitions, hackathons, and recognition that mark my journey.</p>
       <div class="ach-grid">
-        <div class="ach-card" data-r><div class="ach-icon">🏆</div><div class="ach-title">Smart India Hackathon</div><div class="ach-org">Government of India — SIH 2025</div><div class="ach-desc">Selected and qualified in the University Round of SIH 2025 — India's largest national hackathon with 1M+ participants.</div><div class="ach-date">2025</div></div>
-        <div class="ach-card" data-r data-d="1"><div class="ach-icon">🥈</div><div class="ach-title">Seamedu Awards — Runner-Up</div><div class="ach-org">Seamedu · Data Science Category</div><div class="ach-desc">Runner-up in the Seamedu Awards for Data Science, recognised for outstanding analytical project delivery and innovation.</div><div class="ach-date">2024</div></div>
-        <div class="ach-card" data-r data-d="2"><div class="ach-icon">🏏</div><div class="ach-title">Cricket — Winner &amp; Runner-Up</div><div class="ach-org">Ajeenkya DY Patil University</div><div class="ach-desc">Multiple wins and runner-up finishes in university-level cricket — showcasing team leadership and competitive drive.</div><div class="ach-date">2022 — 2025</div></div>
-        <!-- PASTE MORE .ach-card BLOCKS HERE -->
+        <div class="ach-card" data-r>
+          <div class="ach-icon">🏆</div>
+          <div class="ach-title">Smart India Hackathon</div>
+          <div class="ach-org">Government of India — SIH 2025</div>
+          <div class="ach-desc">Selected and qualified in the University Round of SIH 2025 — India's largest national hackathon with 1M+ participants.</div>
+          <div class="ach-date">2025</div>
+        </div>
+        <div class="ach-card" data-r data-d="1">
+          <div class="ach-icon">🥇</div>
+          <div class="ach-title">Seamedu Awards — Winner</div>
+          <div class="ach-org">Seamedu · Data Science Category</div>
+          <div class="ach-desc">Winner at the Seamedu Awards 2026 for Data Science, recognised for outstanding analytical project delivery and innovation.</div>
+          <div class="ach-date">2026</div>
+        </div>
+        <div class="ach-card" data-r data-d="2">
+          <div class="ach-icon">🏏</div>
+          <div class="ach-title">Cricket — Winner &amp; Runner-Up</div>
+          <div class="ach-org">Ajeenkya DY Patil University</div>
+          <div class="ach-desc">Multiple wins and runner-up finishes in university-level cricket tournaments — showcasing team leadership and competitive drive.</div>
+          <div class="ach-date">2025 — 2026</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       CONTACT — EDIT: contact info
-       To make form send real emails → see js/main.js Section M
-  ============================================================ -->
+  <!-- CONTACT -->
   <section id="contact" class="bg-alt">
     <div class="wrap">
       <span class="sec-label" data-r>Contact</span>
@@ -421,21 +463,23 @@
             </div>
             <div class="fg"><label>SUBJECT</label><input type="text" placeholder="Job opportunity / Collaboration / Project" id="cs"/></div>
             <div class="fg"><label>MESSAGE</label><textarea placeholder="Tell me about the opportunity..." id="cm"></textarea></div>
-            <button id="send-btn" class="btn-p" style="align-self:flex-start">Send Message →</button>
+            <button id="send-btn" class="btn-p" style="align-self:flex-start">
+              <span id="btn-text">Send Message →</span>
+              <span id="btn-loading" style="display:none">Sending...</span>
+            </button>
             <div class="form-success" id="fs">✓ Message sent! Prem will reply within 24 hours.</div>
+            <div class="form-error" id="fe">✗ Couldn't send — please email directly at Premnawale3@gmail.com</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       FOOTER — EDIT: tagline, social links
-  ============================================================ -->
+  <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
       <div class="footer-logo"><div class="f-dot-blue"></div>Prem Nawale</div>
-      <div class="footer-copy">© 2025 · Built with passion &amp; Python ☕</div>
+      <div class="footer-copy">© 2026 · Built with passion &amp; Python ☕</div>
       <div class="footer-status"><div class="f-dot"></div> Available for opportunities</div>
       <div class="footer-socials">
         <a href="https://github.com/PremNawale3" target="_blank" class="soc"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg></a>
@@ -446,8 +490,6 @@
 
   <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
-  <!-- JavaScript -->
   <script src="js/main.js"></script>
-
 </body>
 </html>
